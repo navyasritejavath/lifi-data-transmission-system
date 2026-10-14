@@ -4,199 +4,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Li-Fi Data Transmission System</title>
+  <title>MediLink | Hospital Management</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-icon">L</div>
-      <div>
-        <h1>Li-Fi<span>Link</span></h1>
-        <p>LIGHT FIDELITY NETWORK</p>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">✚ MediLink <span>HOSPITAL SYSTEM</span></div>
+      <p class="nav-heading">MAIN MENU</p>
+      <button class="nav active" data-page="dashboard">▦ Dashboard</button>
+      <button class="nav" data-page="patients">♙ Patients</button>
+      <button class="nav" data-page="doctors">✚ Doctors</button>
+      <button class="nav" data-page="appointments">▣ Appointments</button>
+      <button class="nav" data-page="billing">₹ Billing</button>
+      <button class="nav" data-page="lifi">◉ Li-Fi Transfer</button>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span> System online
+        <small>Academic demo version</small>
       </div>
-    </div>
-    <div class="system-status">
-      <span class="status-dot"></span>
-      SIMULATION MODE
-    </div>
-  </header>
+    </aside>
 
-  <main class="container">
-    <section class="welcome">
-      <div>
-        <p class="eyebrow">OPTICAL COMMUNICATION SYSTEM</p>
-        <h2>Li-Fi Data Transmission</h2>
-        <p class="subtitle">
-          Transfer information through simulated light signals.
-        </p>
-      </div>
-      <div class="protocol">LED → LIGHT → RECEIVER</div>
-    </section>
-
-    <section class="stats">
-      <article class="stat-card">
-        <p>TRANSMISSION STATUS</p>
-        <h3 id="status">Ready</h3>
-        <span>System state</span>
-      </article>
-
-      <article class="stat-card">
-        <p>DATA SIZE</p>
-        <h3 id="dataSize">0 bytes</h3>
-        <span>Encoded message size</span>
-      </article>
-
-      <article class="stat-card">
-        <p>BINARY LENGTH</p>
-        <h3 id="bitCount">0 bits</h3>
-        <span>Data representation</span>
-      </article>
-
-      <article class="stat-card">
-        <p>SUCCESSFUL TRANSFERS</p>
-        <h3 id="transferCount">0</h3>
-        <span>Completed simulations</span>
-      </article>
-    </section>
-
-    <section class="workspace">
-      <article class="panel transmitter">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">01 / TRANSMITTER</p>
-            <h3>Send your message</h3>
-          </div>
-          <span class="tag">INPUT</span>
-        </div>
-
-        <label for="message">Message to transmit</label>
-        <textarea id="message" maxlength="250"
-          placeholder="Type your message here...">Hello Li-Fi World!</textarea>
-
-        <div class="input-footer">
-          <span>Maximum 250 characters</span>
-          <span id="charCount">18 / 250</span>
-        </div>
-
-        <button id="transmitBtn" class="primary-btn">
-          <span>↗</span> Transmit Data
-        </button>
-
-        <div class="led-section">
-          <div class="led" id="led">
-            <div class="led-core"></div>
-          </div>
-          <div>
-            <h4 id="ledTitle">LED Transmitter</h4>
-            <p id="ledDescription">Waiting for data...</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel signal-panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">02 / LIGHT CHANNEL</p>
-            <h3>Signal transmission</h3>
-          </div>
-          <span class="tag">OPTICAL</span>
-        </div>
-
-        <div class="channel">
-          <div class="channel-node">
-            <div class="node-icon">LED</div>
-            <span>Transmitter</span>
-          </div>
-
-          <div class="light-path">
-            <div class="light-beam" id="lightBeam"></div>
-            <div class="signal-particle" id="particle"></div>
-            <span>LIGHT SIGNAL</span>
-          </div>
-
-          <div class="channel-node">
-            <div class="node-icon receiver-icon">RX</div>
-            <span>Receiver</span>
-          </div>
-        </div>
-
-        <div class="progress-header">
-          <span>Transmission progress</span>
-          <strong id="progressText">0%</strong>
-        </div>
-
-        <div class="progress-track">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div class="binary-heading">
-          <h4>Binary data stream</h4>
-          <span id="binaryInfo">Awaiting data</span>
-        </div>
-
-        <div class="binary-box" id="binaryOutput">
-          Your binary data will appear here.
-        </div>
-
-        <div class="legend">
-          <span><i class="legend-one"></i> 1 = ON</span>
-          <span><i class="legend-zero"></i> 0 = OFF</span>
-        </div>
-      </article>
-    </section>
-
-    <section class="panel receiver">
-      <div class="panel-heading">
+    <main class="main">
+      <header class="topbar">
+        <button id="menuButton" class="menu-button">☰</button>
         <div>
-          <p class="eyebrow">03 / RECEIVER</p>
-          <h3>Received message</h3>
+          <strong id="pageTitle">Dashboard</strong>
+          <small>Hospital administration portal</small>
         </div>
-        <span class="tag">OUTPUT</span>
-      </div>
+        <div class="admin">● Administrator</div>
+      </header>
 
-      <div class="receiver-content">
-        <div class="receiver-icon-large">RX</div>
-        <div class="received-data">
-          <p id="receiverStatus">Waiting for incoming data</p>
-          <div id="receivedMessage" class="received-message">
-            Your decoded message will appear here.
+      <div class="content">
+        <section class="page active" id="dashboard">
+          <div class="welcome">
+            <div>
+              <p class="eyebrow">HOSPITAL OVERVIEW</p>
+              <h1>Good day, Administrator 👋</h1>
+              <p>Monitor hospital activities from one dashboard.</p>
+            </div>
+            <div class="welcome-icon">✚</div>
           </div>
-        </div>
-        <div id="resultBadge" class="result-badge">STANDBY</div>
+
+          <div class="stats">
+            <article class="stat-card">
+              <span class="stat-icon blue">♙</span>
+              <p>Total Patients</p><h2 id="patientCount">3</h2>
+              <small>Registered records</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon purple">✚</span>
+              <p>Doctors</p><h2 id="doctorCount">3</h2>
+              <small>Available in directory</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon green">▣</span>
+              <p>Appointments</p><h2 id="appointmentCount">2</h2>
+              <small>All bookings</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon orange">₹</span>
+              <p>Total Billing</p><h2 id="revenue">₹2,500</h2>
+              <small>Sample bill amount</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="card">
+              <div class="card-heading">
+                <div><h2>Recent Appointments</h2><p>Latest hospital bookings</p></div>
+                <button class="text-button" data-go="appointments">View all →</button>
+              </div>
+              <div id="recentAppointments"></div>
+            </article>
+            <article class="card lifi-promo">
+              <div class="promo-icon">〰</div>
+              <p class="eyebrow">SMART COMMUNICATION</p>
+              <h2>Li-Fi Data Transmission</h2>
+              <p>Explore how messages can be encoded into binary data and represented by visible-light LED signals.</p>
+              <button class="primary" data-go="lifi">Open Simulator →</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" id="patients">
+          <div class="section-header">
+            <div><h1>Patient Management</h1><p>Register and manage patient records.</p></div>
+            <button class="primary" id="addPatient">＋ Add Patient</button>
+          </div>
+          <article class="card">
+            <input class="search" id="patientSearch" placeholder="Search by patient name...">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Patient</th><th>Age</th><th>Gender</th><th>Phone</th><th>Blood Group</th><th>Action</th></tr></thead>
+                <tbody id="patientRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="page" id="doctors">
+          <div class="section-header">
+            <div><h1>Medical Team</h1><p>Hospital doctors and specialities.</p></div>
+          </div>
+          <div class="doctor-grid" id="doctorCards"></div>
+        </section>
+
+        <section class="page" id="appointments">
+          <div class="section-header">
+            <div><h1>Appointments</h1><p>Schedule and track patient visits.</p></div>
+            <button class="primary" id="addAppointment">＋ Book Appointment</button>
+          </div>
+          <article class="card">
+            <input class="search" id="appointmentSearch" placeholder="Search patient or doctor...">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="appointmentRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="page" id="billing">
+          <div class="section-header">
+            <div><h1>Billing & Payments</h1><p>Manage sample hospital bills.</p></div>
+            <button class="primary" id="addBill">＋ Create Bill</button>
+          </div>
+          <article class="card">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Bill ID</th><th>Patient</th><th>Description</th><th>Date</th><th>Amount</th><th>Action</th></tr></thead>
+                <tbody id="billRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="page" id="lifi">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">OPTICAL COMMUNICATION LAB</p>
+              <h1>Li-Fi Data Transmission</h1>
+              <p>Simulate a message travelling through an LED light channel.</p>
+            </div>
+            <span class="live-badge"><span class="status-dot"></span> SIMULATION MODE</span>
+          </div>
+
+          <div class="lifi-grid">
+            <article class="card">
+              <div class="card-heading"><div><h2>01 / Transmitter</h2><p>Enter your message</p></div><span class="step-icon">↗</span></div>
+              <label for="message">Message to transmit</label>
+              <textarea id="message" maxlength="120">Patient appointment confirmed.</textarea>
+              <div class="char-count"><span id="charCount">29</span> / 120 characters</div>
+              <button class="primary full" id="transmit">▶ Start Transmission</button>
+              <div class="led-box">
+                <div class="led" id="led"></div>
+                <h3 id="ledTitle">LED is idle</h3>
+                <p id="ledDescription">Waiting for a message</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-heading"><div><h2>02 / Optical Channel</h2><p>Visual representation of light</p></div><span class="step-icon">⌁</span></div>
+              <div class="optical-stage">
+                <div class="device">
+                  <div class="device-screen">LED</div>
+                  <span>Transmitter</span>
+                </div>
+                <div class="light-channel">
+                  <div class="light-beam" id="lightBeam"></div>
+                  <div class="light-particle" id="lightParticle"></div>
+                  <small>VISIBLE LIGHT</small>
+                </div>
+                <div class="device">
+                  <div class="device-screen receiver-screen">RX</div>
+                  <span>Receiver</span>
+                </div>
+              </div>
+              <div class="progress-info"><span id="transferStatus">Ready to transmit</span><strong id="percent">0%</strong></div>
+              <div class="progress-track"><div id="progress"></div></div>
+              <div class="binary-heading"><h3>Binary Data Stream</h3><span id="bitCount">0 bits</span></div>
+              <div class="binary-output" id="binaryOutput">Your binary data will appear here.</div>
+            </article>
+          </div>
+
+          <article class="card receiver-card">
+            <div class="card-heading"><div><h2>03 / Receiver Output</h2><p>Decoded message at destination</p></div><span class="step-icon">↓</span></div>
+            <div class="receiver-result">
+              <div class="receiver-symbol">✓</div>
+              <div><p id="receiverStatus">Waiting for transmission...</p><h3 id="decodedMessage">No message received yet.</h3></div>
+              <span class="verification" id="verification">STANDBY</span>
+            </div>
+          </article>
+          <p class="disclaimer">Educational simulation only. This website does not transmit actual light or real patient information.</p>
+        </section>
       </div>
-    </section>
+      <footer>© 2026 MediLink · Hospital Management & Li-Fi Academic Project</footer>
+    </main>
+  </div>
 
-    <section class="bottom-grid">
-      <article class="panel">
-        <p class="eyebrow">HOW IT WORKS</p>
-        <h3>Transmission process</h3>
-        <ol class="steps">
-          <li>Enter a text message.</li>
-          <li>Convert the message into binary.</li>
-          <li>Simulate LED light pulses.</li>
-          <li>Decode the binary data at the receiver.</li>
-        </ol>
-      </article>
-
-      <article class="panel">
-        <p class="eyebrow">ABOUT THE PROJECT</p>
-        <h3>What is Li-Fi?</h3>
-        <p class="about-text">
-          Li-Fi stands for Light Fidelity. It is a wireless communication
-          technology that can use light to transmit data. In this project,
-          JavaScript simulates the encoding, light pulses, and decoding
-          process without physical hardware.
-        </p>
-      </article>
-    </section>
-
-    <footer>
-      <span>Li-FiLink · Academic Project</span>
-      <span>HTML · CSS · JavaScript</span>
-    </footer>
-  </main>
+  <dialog id="recordDialog">
+    <form id="recordForm">
+      <div class="modal-heading"><h2 id="modalTitle">Add Record</h2><button type="button" id="closeModal" class="close-button">✕</button></div>
+      <div id="modalFields" class="form-fields"></div>
+      <div class="modal-actions">
+        <button type="button" class="secondary" id="cancelModal">Cancel</button>
+        <button type="submit" class="primary">Save Record</button>
+      </div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
 </body>
 </html>
